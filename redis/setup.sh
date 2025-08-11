@@ -29,7 +29,27 @@ if ! test -d workdir/libs; then
     mkdir workdir/libs
 fi
 
-check_exists_and_create_symlink "unikraft"
-check_exists_and_create_symlink "libs/musl"
-check_exists_and_create_symlink "libs/lwip"
-check_exists_and_create_symlink "libs/redis"
+git clone https://github.com/SalarSamani/unikraft_newlib.git workdir/unikraft
+cd workdir/unikraft
+git checkout port-PTE-GSOC2025
+cd ../..
+
+git clone https://github.com/SalarSamani/lib-newlib.git workdir/libs/newlib
+cd workdir/libs/newlib
+git checkout port-newlib-4.5
+cd ../../..
+
+git clone https://github.com/SalarSamani/lib-pthread-embedded.git workdir/libs/pthread_embedded
+cd workdir/libs/pthread_embedded
+git checkout port-PTE-GSOC2025
+cd ../../..
+
+git clone https://github.com/SalarSamani/lib-lwip.git workdir/libs/lwip
+cd workdir/libs/lwip
+git checkout port-newlib-4.5
+cd ../../..
+
+git clone https://github.com/SalarSamani/lib-redis.git workdir/libs/redis
+cd workdir/libs/redis
+git checkout port-PTE-GSOC2025
+cd ../../..
